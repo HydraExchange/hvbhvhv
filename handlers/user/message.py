@@ -22,10 +22,15 @@ async def start_handler(message: Message, state: FSMContext):
     name = html.escape(message.from_user.first_name or "пользователь")
 
     await message.answer(
-        f"👋 Добрый день, <b>{name}</b>!\n\n"
-        "Добро пожаловать в <b>LIBERTY ЗАЯВКИ</b>.\n\n"
-        "Здесь вы можете оставить заявку.\n"
-        "Нажмите кнопку ниже 👇",
+        f"👋 Добро пожаловать в <b>LIBERTY TEAM</b>!
+
+Для начала работы необходимо заполнить заявку.
+
+Пожалуйста, отвечайте на вопросы <b>максимально подробно и правдиво</b>. От качества и полноты ваших ответов зависит рассмотрение заявки.
+
+⚠️ <b>Ленивые и неполные заявки будут отклонены.</b>
+
+Если готовы — нажмите кнопку ниже 👇",
         reply_markup=kb
     )
 
@@ -48,7 +53,10 @@ async def reg_three(message: Message, state: FSMContext):
 
     await message.answer(
         "📋 <b>Шаг 3 из 3</b>\n\n"
-        "Опишите вашу проблему или вопрос:"
+         "📝 <b>Ответьте на вопросы одним сообщением и максимально детально.</b>\n\n"
+    "1️⃣ 📢 <b>Откуда вы узнали о команде?</b>\n"
+    "Отправьте ссылку на источник — обязательный шаг.\n\n"
+    "2️⃣ ⏱️ <b>Сколько времени готовы уделять работе и почему мы должны выбрать именно вас?</b>"
     )
 
 
@@ -74,9 +82,9 @@ async def reg_four(message: Message, state: FSMContext):
         text=(
             "🔔 <b>Новая заявка!</b>\n\n"
             f"🆔 Номер: <code>{random_number}</code>\n"
-            f"👤 Имя: {html.escape(data['name'])}\n"
-            f"📧 Почта: {html.escape(data['email'])}\n"
-            f"📋 Проблема: {html.escape(data['problem'])}"
+            f"👤 USER: {html.escape(data['name'])}\n"
+            f"📧ДЕП: {html.escape(data['email'])}\n"
+            f"📋ВОПРОСЫ {html.escape(data['problem'])}"
         )
     )
 
