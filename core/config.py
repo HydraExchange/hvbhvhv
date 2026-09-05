@@ -7,7 +7,7 @@ def get_path_env() -> pathlib.Path:
 
 
 class Settings(BaseSettings):
-    bot_token: 8258401803:AAH-KH2HgPwhN1FzmuT-4j_-DuqWwxFY0iM
+    bot_token: str
     ADMIN_ID: int = 7861322479
 
     model_config = SettingsConfigDict(
