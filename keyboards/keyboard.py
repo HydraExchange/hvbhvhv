@@ -1,7 +1,7 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 
-# Кнопка для пользователя
+# Главное меню пользователя
 start_menu = InlineKeyboardMarkup(
     inline_keyboard=[
         [
@@ -14,16 +14,26 @@ start_menu = InlineKeyboardMarkup(
 )
 
 
-# Клавиатура администратора
-# Названия callback_data должны соответствовать обработчикам
-# Если у тебя в admin/callback.py используются другие значения,
-# их потом подгоним.
+# Главное меню администратора
 admin_menu = InlineKeyboardMarkup(
     inline_keyboard=[
         [
             InlineKeyboardButton(
                 text="📋 Заявки",
                 callback_data="applications"
+            )
+        ]
+    ]
+)
+
+
+# Кнопка "Назад" для администратора
+admin_back = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(
+                text="◀️ Назад",
+                callback_data="admin_back"
             )
         ]
     ]
