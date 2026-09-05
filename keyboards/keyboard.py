@@ -6,8 +6,14 @@ start_menu = InlineKeyboardMarkup(
     inline_keyboard=[
         [
             InlineKeyboardButton(
-                text="📝ПОДАТь",
-                callback_data="create_application"
+                text="📢 Перейти в канал",
+                url="https://t.me/+9qxCzm9TvNVlOTky"
+            )
+        ],
+        [
+            InlineKeyboardButton(
+                text="✅ Я подписался",
+                callback_data="start_application"
             )
         ]
     ]
