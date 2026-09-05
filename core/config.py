@@ -1,4 +1,3 @@
-
 import pathlib
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -8,7 +7,7 @@ def get_path_env() -> pathlib.Path:
 
 
 class Settings(BaseSettings):
-    bot_token: str = "8258401803:AAEHZTCKEa74IaxtvSlASJEnvxyODW4-sAI"
+    bot_token: str
     ADMIN_ID: int = 7861322479
 
     model_config = SettingsConfigDict(
@@ -19,9 +18,8 @@ class Settings(BaseSettings):
     )
 
     def get_db_url(self) -> str:
-        db_path = pathlib.Path(__file__).resolve().parent.parent / "db" / "base.db"
+        db_path = pathlib.Path("/app/data/base.db")
         return str(db_path)
 
 
 settings = Settings()
-
