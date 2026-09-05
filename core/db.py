@@ -1,4 +1,4 @@
-```python
+
 import os
 import aiosqlite
 
@@ -80,4 +80,3 @@ settings = Settings()
 
 # Используем постоянную директорию Docker
 db = DBConnect("/app/data/base.db")
-```
