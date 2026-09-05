@@ -6,7 +6,7 @@ start_menu = InlineKeyboardMarkup(
     inline_keyboard=[
         [
             InlineKeyboardButton(
-                text="📝 Оставить заявку",
+                text="📝ПОДАТь",
                 callback_data="create_application"
             )
         ]
