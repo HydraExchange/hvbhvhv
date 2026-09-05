@@ -19,7 +19,7 @@ async def create_application(
     await callback.message.answer(
         "📝 <b>Создание заявки</b>\n\n"
         "Шаг 1 из 3\n\n"
-        "Введите ваше имя:"
+        "👤 Введите ваш username Telegram в формате @юзер:"
     )
 
 
