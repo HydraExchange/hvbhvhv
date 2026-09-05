@@ -37,8 +37,7 @@ async def reg_two(message: Message, state: FSMContext):
     await state.set_state(States.email)
 
     await message.answer(
-        "📧 <b>Шаг 2 из 3</b>\n\n"
-        "Введите вашу электронную почту:"
+        "💰 <b>Какой депозит для работы с BTC у вас есть?</b>"
     )
 
 
@@ -48,13 +47,11 @@ async def reg_three(message: Message, state: FSMContext):
     await state.set_state(States.problem)
 
     await message.answer(
-        "📋 <b>Шаг 3 из 3</b>\n\n"
-         "📝 <b>Ответьте на вопросы одним сообщением и максимально детально.</b>\n\n"
-    "1️⃣ 📢 <b>Откуда вы узнали о команде?</b>\n"
-    "Отправьте ссылку на источник — обязательный шаг.\n\n"
-    "2️⃣ ⏱️ <b>Сколько времени готовы уделять работе и почему мы должны выбрать именно вас?</b>"
+        "📝 <b>Ответьте на вопросы одним сообщением и максимально детально.</b>\n\n"
+        "1️⃣ 📢 <b>Откуда вы узнали о команде?</b>\n"
+        "Отправьте ссылку на источник — обязательный шаг.\n\n"
+        "2️⃣ ⏱️ <b>Сколько времени готовы уделять работе и почему мы должны выбрать именно вас?</b>"
     )
-
 
 async def reg_four(message: Message, state: FSMContext):
     await state.update_data(problem=message.text)
