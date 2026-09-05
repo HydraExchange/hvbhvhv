@@ -22,7 +22,7 @@ async def start_handler(message: Message, state: FSMContext):
     name = html.escape(message.from_user.first_name or "пользователь")
 
     await message.answer(
-        f"👋 Добро пожаловать в <b>LIBERTY TEAM</b>, {name}!\n\n"
+        f"👋 Добро пожаловать в <b>LIBERTY TEAM!</b>, {name}!\n\n"
         "Для начала работы необходимо заполнить заявку.\n\n"
         "Отвечайте на вопросы максимально детально и правдиво.\n"
         "⚠️ Ленивые и неполные заявки будут отклонены.\n\n"
