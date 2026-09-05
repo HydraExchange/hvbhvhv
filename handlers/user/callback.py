@@ -24,6 +24,13 @@ async def create_application(
 
 
 def register_handlers():
+    # Кнопка "✅ Я подписался"
+    router.callback_query.register(
+        create_application,
+        F.data == "start_application"
+    )
+
+    # Старая кнопка "📝 Оставить заявку"
     router.callback_query.register(
         create_application,
         F.data == "create_application"
