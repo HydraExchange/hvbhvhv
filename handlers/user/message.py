@@ -1,7 +1,7 @@
 import html
 from random import randint
 
-from aiogram import Router, F
+from aiogram import Router
 from aiogram.filters import CommandStart
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message
@@ -24,23 +24,15 @@ async def start_handler(message: Message, state: FSMContext):
     await message.answer(
         f"👋 Добрый день, <b>{name}</b>!\n\n"
         "Добро пожаловать в <b>LIBERTY ЗАЯВКИ</b>.\n\n"
-        "Здесь вы можете оставить заявку. "
-        "Для этого нажмите кнопку ниже 👇",
-        reply_markup=kb,
-    )
-
-
-async def reg_one(message: Message, state: FSMContext):
-    await state.set_state(States.name)
-    await message.answer(
-        "📝 <b>Создание заявки</b>\n\n"
-        "Шаг 1 из 3\n\n"
-        "Введите ваше имя:"
+        "Здесь вы можете оставить заявку.\n"
+        "Нажмите кнопку ниже 👇",
+        reply_markup=kb
     )
 
 
 async def reg_two(message: Message, state: FSMContext):
     await state.update_data(name=message.text)
+
     await state.set_state(States.email)
 
     await message.answer(
@@ -51,6 +43,7 @@ async def reg_two(message: Message, state: FSMContext):
 
 async def reg_three(message: Message, state: FSMContext):
     await state.update_data(email=message.text)
+
     await state.set_state(States.problem)
 
     await message.answer(
@@ -63,16 +56,17 @@ async def reg_four(message: Message, state: FSMContext):
     await state.update_data(problem=message.text)
 
     data = await state.get_data()
+
     random_number = randint(1000000, 9999999)
 
-    await db.execute(
+    await db.excute(
         "INSERT INTO users (name, email, TEXT, number) VALUES (?, ?, ?, ?)",
         (
             data["name"],
             data["email"],
             data["problem"],
-            random_number,
-        ),
+            random_number
+        )
     )
 
     await message.bot.send_message(
@@ -83,21 +77,35 @@ async def reg_four(message: Message, state: FSMContext):
             f"👤 Имя: {html.escape(data['name'])}\n"
             f"📧 Почта: {html.escape(data['email'])}\n"
             f"📋 Проблема: {html.escape(data['problem'])}"
-        ),
+        )
     )
 
     await message.answer(
         "✅ <b>Заявка успешно отправлена!</b>\n\n"
         f"Номер вашей заявки: <code>{random_number}</code>\n\n"
-        "Мы получили вашу заявку и свяжемся с вами по указанному адресу."
+        "Мы получили вашу заявку и свяжемся с вами."
     )
 
     await state.clear()
 
 
 def register_handlers():
-    router.message.register(start_handler, CommandStart())
-    router.message.register(reg_one, F.text == "Оставить заявку")
-    router.message.register(reg_two, States.name)
-    router.message.register(reg_three, States.email)
-    router.message.register(reg_four, States.problem)
+    router.message.register(
+        start_handler,
+        CommandStart()
+    )
+
+    router.message.register(
+        reg_two,
+        States.name
+    )
+
+    router.message.register(
+        reg_three,
+        States.email
+    )
+
+    router.message.register(
+        reg_four,
+        States.problem
+    )
