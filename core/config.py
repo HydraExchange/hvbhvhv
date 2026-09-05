@@ -1,4 +1,4 @@
-```python
+
 import pathlib
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -8,7 +8,7 @@ def get_path_env() -> pathlib.Path:
 
 
 class Settings(BaseSettings):
-    BOT_TOKEN: str = "8258401803:AAEHZTCKEa74IaxtvSlASJEnvxyODW4-sAI"
+    bot_token: str = "8258401803:AAEHZTCKEa74IaxtvSlASJEnvxyODW4-sAI"
     ADMIN_ID: int = 7861322479
 
     model_config = SettingsConfigDict(
@@ -24,4 +24,4 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
-```
+
