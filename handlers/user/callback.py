@@ -1,13 +1,30 @@
 from aiogram import Router, F
 from aiogram.types import CallbackQuery
 from aiogram.fsm.context import FSMContext
+
 from core.States import States
+
 
 router = Router()
 
-async def start_handler(callback: CallbackQuery, state: FSMContext):
-    await callback.message.answer("Введите ваше имя:")
-    
+
+async def create_application(
+    callback: CallbackQuery,
+    state: FSMContext
+):
+    await callback.answer()
+
+    await state.set_state(States.name)
+
+    await callback.message.answer(
+        "📝 <b>Создание заявки</b>\n\n"
+        "Шаг 1 из 3\n\n"
+        "Введите ваше имя:"
+    )
+
+
 def register_handlers():
-    router.callback_query.register(start_handler, F.data == "Help")
-    
+    router.callback_query.register(
+        create_application,
+        F.data == "create_application"
+    )
